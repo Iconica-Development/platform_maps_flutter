@@ -142,6 +142,11 @@ class _PlatformMap extends StatefulWidget {
   /// Enables or disables the traffic layer of the map
   bool get trafficEnabled => params.trafficEnabled;
 
+  /// A Boolean value indicating whether the view's layout margins are updated
+  /// automatically to reflect the safe area.
+  bool get insetsLayoutMarginsFromSafeArea =>
+      params.insetsLayoutMarginsFromSafeArea;
+
   /// Which gestures should be consumed by the map.
   ///
   /// It is possible for other gesture recognizers to be competing with the map on pointer
@@ -184,6 +189,7 @@ class _PlatformMapState extends State<_PlatformMap> {
       onTap: _onTap,
       onLongPress: _onLongPress,
       trafficEnabled: widget.trafficEnabled,
+      insetsLayoutMarginsFromSafeArea: widget.insetsLayoutMarginsFromSafeArea,
       minMaxZoomPreference: widget.minMaxZoomPreference.appleMapsZoomPreference,
     );
   }

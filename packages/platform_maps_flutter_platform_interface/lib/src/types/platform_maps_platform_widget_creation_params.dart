@@ -24,6 +24,7 @@ class PlatformMapsPlatformWidgetCreationParams {
     this.tiltGesturesEnabled = true,
     this.myLocationEnabled = false,
     this.myLocationButtonEnabled = false,
+    this.insetsLayoutMarginsFromSafeArea = false,
     this.padding = const EdgeInsets.all(0),
     this.trafficEnabled = false,
     this.markers = const <Marker>{},
@@ -156,6 +157,10 @@ class PlatformMapsPlatformWidgetCreationParams {
 
   /// Enables or disables the traffic layer of the map
   final bool trafficEnabled;
+
+  /// A Boolean value indicating whether the view's layout margins are updated
+  /// automatically to reflect the safe area.
+  final bool insetsLayoutMarginsFromSafeArea;
 
   /// Which gestures should be consumed by the map.
   ///
