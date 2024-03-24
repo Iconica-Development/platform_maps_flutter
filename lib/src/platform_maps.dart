@@ -31,6 +31,7 @@ class PlatformMap extends StatefulWidget {
     this.onCameraIdle,
     this.onTap,
     this.onLongPress,
+    this.insetsLayoutMarginsFromSafeArea = false,
   }) : super(key: key);
 
   /// Callback method for when the map is ready to be used.
@@ -163,6 +164,11 @@ class PlatformMap extends StatefulWidget {
   /// When this set is empty, the map will only handle pointer events for gestures that
   /// were not claimed by any other gesture recognizer.
   final Set<Factory<OneSequenceGestureRecognizer>> gestureRecognizers;
+
+  /// A Boolean value indicating whether the view's layout margins are updated
+  /// automatically to reflect the safe area.
+  final bool insetsLayoutMarginsFromSafeArea;
+
   @override
   _PlatformMapState createState() => _PlatformMapState();
 }
@@ -226,6 +232,7 @@ class _PlatformMapState extends State<PlatformMap> {
         trafficEnabled: widget.trafficEnabled,
         minMaxZoomPreference:
             widget.minMaxZoomPreference.appleMapsZoomPreference,
+            insetsLayoutMarginsFromSafeArea: widget.insetsLayoutMarginsFromSafeArea,
       );
     } else {
       return Text("Platform not yet implemented");
