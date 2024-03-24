@@ -170,7 +170,7 @@ class PlatformMap extends StatefulWidget {
 class _PlatformMapState extends State<PlatformMap> {
   @override
   Widget build(BuildContext context) {
-    if (Platform.isAndroid) {
+    if (kIsWeb || Platform.isAndroid) {
       return googleMaps.GoogleMap(
         initialCameraPosition:
             widget.initialCameraPosition.googleMapsCameraPosition,
@@ -237,37 +237,37 @@ class _PlatformMapState extends State<PlatformMap> {
   }
 
   void _onCameraMove(dynamic cameraPosition) {
-    if (Platform.isIOS) {
-      widget.onCameraMove?.call(
-        CameraPosition.fromAppleMapCameraPosition(
-          cameraPosition as appleMaps.CameraPosition,
-        ),
-      );
-    } else if (Platform.isAndroid) {
+    if (kIsWeb || Platform.isAndroid) {
       widget.onCameraMove?.call(
         CameraPosition.fromGoogleMapCameraPosition(
           cameraPosition as googleMaps.CameraPosition,
+        ),
+      );
+    } else if (Platform.isIOS) {
+      widget.onCameraMove?.call(
+        CameraPosition.fromAppleMapCameraPosition(
+          cameraPosition as appleMaps.CameraPosition,
         ),
       );
     }
   }
 
   void _onTap(dynamic position) {
-    if (Platform.isIOS) {
-      widget.onTap?.call(LatLng._fromAppleLatLng(position as appleMaps.LatLng));
-    } else if (Platform.isAndroid) {
+    if (kIsWeb || Platform.isAndroid) {
       widget.onTap
           ?.call(LatLng._fromGoogleLatLng(position as googleMaps.LatLng));
+    } else if (Platform.isIOS) {
+      widget.onTap?.call(LatLng._fromAppleLatLng(position as appleMaps.LatLng));
     }
   }
 
   void _onLongPress(dynamic position) {
-    if (Platform.isIOS) {
-      widget.onLongPress
-          ?.call(LatLng._fromAppleLatLng(position as appleMaps.LatLng));
-    } else if (Platform.isAndroid) {
+    if (kIsWeb || Platform.isAndroid) {
       widget.onLongPress
           ?.call(LatLng._fromGoogleLatLng(position as googleMaps.LatLng));
+    } else if (Platform.isIOS) {
+      widget.onLongPress
+          ?.call(LatLng._fromAppleLatLng(position as appleMaps.LatLng));
     }
   }
 
