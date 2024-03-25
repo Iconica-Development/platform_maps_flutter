@@ -12,6 +12,7 @@ class PlatformMap extends StatefulWidget {
     this.gestureRecognizers = const <Factory<OneSequenceGestureRecognizer>>{},
     this.compassEnabled = true,
     this.mapType = MapType.normal,
+    this.mapColorScheme = MapColorScheme.system,
     this.minMaxZoomPreference = MinMaxZoomPreference.unbounded,
     this.rotateGesturesEnabled = true,
     this.scrollGesturesEnabled = true,
@@ -47,6 +48,9 @@ class PlatformMap extends StatefulWidget {
 
   /// Type of map tiles to be rendered.
   final MapType mapType;
+
+  /// The colorscheme to be used when the map is on apple maps. There is no support for darkmode on google maps.
+  final MapColorScheme mapColorScheme;
 
   /// Preferred bounds for the camera zoom level.
   ///
@@ -211,6 +215,7 @@ class _PlatformMapState extends State<PlatformMap> {
             widget.initialCameraPosition.appleMapsCameraPosition,
         compassEnabled: widget.compassEnabled,
         mapType: _getAppleMapType(),
+        colorScheme: _getAppleMapColorScheme(),
         padding: widget.padding,
         annotations: Marker.toAppleMapsAnnotationSet(widget.markers),
         polylines: Polyline.toAppleMapsPolylines(widget.polylines),
@@ -232,7 +237,7 @@ class _PlatformMapState extends State<PlatformMap> {
         trafficEnabled: widget.trafficEnabled,
         minMaxZoomPreference:
             widget.minMaxZoomPreference.appleMapsZoomPreference,
-            insetsLayoutMarginsFromSafeArea: widget.insetsLayoutMarginsFromSafeArea,
+        insetsLayoutMarginsFromSafeArea: widget.insetsLayoutMarginsFromSafeArea,
       );
     } else {
       return Text("Platform not yet implemented");
@@ -287,6 +292,17 @@ class _PlatformMapState extends State<PlatformMap> {
       return appleMaps.MapType.hybrid;
     }
     return appleMaps.MapType.standard;
+  }
+
+  appleMaps.MapColorScheme _getAppleMapColorScheme() {
+    if (widget.mapColorScheme == MapColorScheme.system) {
+      return appleMaps.MapColorScheme.system;
+    } else if (widget.mapColorScheme == MapColorScheme.light) {
+      return appleMaps.MapColorScheme.light;
+    } else if (widget.mapColorScheme == MapColorScheme.dark) {
+      return appleMaps.MapColorScheme.dark;
+    }
+    return appleMaps.MapColorScheme.system;
   }
 
   googleMaps.MapType _getGoogleMapType() {

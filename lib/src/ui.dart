@@ -16,6 +16,14 @@ enum MapType {
   hybrid,
 }
 
+enum MapColorScheme {
+  /// Follow system style
+  system,
+
+  light,
+  dark,
+}
+
 // Used with [PlatformMapOptions] to wrap min and max zoom. This allows
 // distinguishing between specifying unbounded zooming (null `minZoom` and
 // `maxZoom`) from not specifying anything (null `MinMaxZoomPreference`).
