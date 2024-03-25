@@ -16,6 +16,7 @@ class PlatformMapsPlatformWidgetCreationParams {
     this.gestureRecognizers = const <Factory<OneSequenceGestureRecognizer>>{},
     this.compassEnabled = true,
     this.mapType = MapType.normal,
+    this.mapColorScheme = MapColorScheme.system,
     this.minMaxZoomPreference = MinMaxZoomPreference.unbounded,
     this.rotateGesturesEnabled = true,
     this.scrollGesturesEnabled = true,
@@ -51,6 +52,9 @@ class PlatformMapsPlatformWidgetCreationParams {
 
   /// Type of map tiles to be rendered.
   final MapType mapType;
+
+  /// The colorscheme to be used when the map is on apple maps. There is no support for darkmode on google maps yet.
+  final MapColorScheme mapColorScheme;
 
   /// Preferred bounds for the camera zoom level.
   ///

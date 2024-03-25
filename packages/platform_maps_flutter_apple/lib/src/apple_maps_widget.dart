@@ -36,6 +36,9 @@ class _PlatformMap extends StatefulWidget {
   /// Type of map tiles to be rendered.
   MapType get mapType => params.mapType;
 
+  /// The colorscheme to be used for the map.
+  MapColorScheme get mapColorScheme => params.mapColorScheme;
+
   /// Preferred bounds for the camera zoom level.
   ///
   /// Actual bounds depend on map data and device.
@@ -170,6 +173,7 @@ class _PlatformMapState extends State<_PlatformMap> {
           widget.initialCameraPosition.appleMapsCameraPosition,
       compassEnabled: widget.compassEnabled,
       mapType: _getMapType(),
+      colorScheme: _getAppleMapColorScheme(),
       padding: widget.padding,
       annotations: widget.markers.appleMapsAnnotationSet,
       polylines: widget.polylines.appleMapsPolylineSet,
@@ -219,5 +223,16 @@ class _PlatformMapState extends State<_PlatformMap> {
       case MapType.hybrid:
         return apple_maps.MapType.hybrid;
     }
+  }
+
+  apple_maps.MapColorScheme _getAppleMapColorScheme() {
+    if (widget.mapColorScheme == MapColorScheme.system) {
+      return apple_maps.MapColorScheme.system;
+    } else if (widget.mapColorScheme == MapColorScheme.light) {
+      return apple_maps.MapColorScheme.light;
+    } else if (widget.mapColorScheme == MapColorScheme.dark) {
+      return apple_maps.MapColorScheme.dark;
+    }
+    return apple_maps.MapColorScheme.system;
   }
 }
