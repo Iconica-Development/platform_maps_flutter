@@ -32,6 +32,8 @@ class PlatformMapsPlatformWidgetCreationParams {
     this.polygons = const <Polygon>{},
     this.polylines = const <Polyline>{},
     this.circles = const <Circle>{},
+    this.googleMapsStyle,
+    this.googleMapsCloudMapId,
     this.onCameraMoveStarted,
     this.onCameraMove,
     this.onCameraIdle,
@@ -165,6 +167,12 @@ class PlatformMapsPlatformWidgetCreationParams {
   /// A Boolean value indicating whether the view's layout margins are updated
   /// automatically to reflect the safe area.
   final bool insetsLayoutMarginsFromSafeArea;
+
+  /// The style of the map. This is only supported for google maps.
+  final String? googleMapsStyle;
+
+  /// The cloud map id of the map. This is only supported for google maps.
+  final String? googleMapsCloudMapId;
 
   /// Which gestures should be consumed by the map.
   ///
