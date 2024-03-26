@@ -33,6 +33,8 @@ class PlatformMap extends StatefulWidget {
     this.onTap,
     this.onLongPress,
     this.insetsLayoutMarginsFromSafeArea = false,
+    this.googleMapsStyle,
+    this.googleMapsCloudMapId,
   }) : super(key: key);
 
   /// Callback method for when the map is ready to be used.
@@ -173,6 +175,12 @@ class PlatformMap extends StatefulWidget {
   /// automatically to reflect the safe area.
   final bool insetsLayoutMarginsFromSafeArea;
 
+  /// The style of the map. This is only supported for google maps.
+  final String? googleMapsStyle;
+
+  /// The cloud map id of the map. This is only supported for google maps.
+  final String? googleMapsCloudMapId;
+
   @override
   _PlatformMapState createState() => _PlatformMapState();
 }
@@ -208,6 +216,8 @@ class _PlatformMapState extends State<PlatformMap> {
         trafficEnabled: widget.trafficEnabled,
         minMaxZoomPreference:
             widget.minMaxZoomPreference.googleMapsZoomPreference,
+        style: widget.googleMapsStyle,
+        cloudMapId: widget.googleMapsCloudMapId,
       );
     } else if (Platform.isIOS) {
       return appleMaps.AppleMap(

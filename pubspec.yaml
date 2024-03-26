@@ -12,8 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  google_maps_flutter: ^2.0.1
-  google_maps_flutter_platform_interface: ^2.0.3
+  google_maps_flutter: ^2.6.0
+  google_maps_flutter_platform_interface: ^2.6.0
   apple_maps_flutter:
     git:
       url: https://github.com/Iconica-Development/apple_maps_flutter
